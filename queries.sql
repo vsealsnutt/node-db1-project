@@ -19,6 +19,7 @@ insert into customers
  	('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', '111', 'Middle Earth');
 
 -- Update Bilbo Baggins record so that the postal code changes to "11122"
+
 update customers set postalcode = '11122' where customerid = 92;
 
 -- (Stretch) Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted
