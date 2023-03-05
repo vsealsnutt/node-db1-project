@@ -19,8 +19,14 @@ function checkAccountPayload(req, res, next) {
   }
 };
 
-function checkAccountNameUnique(req, res, next) {
+async function checkAccountNameUnique(req, res, next) {
   // DO YOUR MAGIC
+  const existingName = await db('accounts').where('name', req.body.name.trim());
+  if (existingName) {
+    next({ status: 400, message: 'that name is taken' });
+  } else {
+    next();
+  }
 };
 
 async function checkAccountId(req, res, next) {
