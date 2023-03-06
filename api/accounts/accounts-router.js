@@ -33,7 +33,7 @@ router.post('/', checkAccountPayload, checkAccountNameUnique, async (req, res, n
 router.put('/:id', checkAccountPayload, checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    const updatedAccount = await Account.updateById(req,params.id, req.body);
+    const updatedAccount = await Account.updateById(req.params.id, req.body);
     res.json(updatedAccount);
   } catch (err) {
     next(err);
