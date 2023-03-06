@@ -22,7 +22,7 @@ function checkAccountPayload(req, res, next) {
 async function checkAccountNameUnique(req, res, next) {
   // DO YOUR MAGIC
   try {
-    const existingName = await db('accounts').where('name', req.body.name.trim());
+    const existingName = await db('accounts').where('name', req.body.name.trim()).first();
     if (existingName) {
       next({ status: 400, message: 'that name is taken' });
     } else {
