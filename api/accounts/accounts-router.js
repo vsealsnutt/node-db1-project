@@ -24,31 +24,33 @@ router.get('/:id', checkAccountId, async (req, res, next) => {
   }
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', checkAccountPayload, checkAccountNameUnique, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-
+    const newAccount = await Account.create(req.body);
+    res.status(201).json(newAccount);
   } catch (err) {
-    
+    next(err);
   }
 });
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', checkAccountPayload, checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-
+    const updatedAccount = await Account.updateById(req,params.id, req.body);
+    res.json(updatedAccount);
   } catch (err) {
-    
+    next(err);
   }
 });
 
 router.delete('/:id', (req, res, next) => {
   // DO YOUR MAGIC
-  try {
+  // try {
 
-  } catch (err) {
+  // } catch (err) {
     
-  }
+  // }
 });
 
 router.use((err, req, res, next) => { // eslint-disable-line
